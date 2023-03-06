@@ -1,0 +1,60 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CC65 build project",
+            "command": "${workspaceFolder}/build.bat",
+            "args": [
+            ],
+            "problemMatcher": {
+                "owner": "c",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                  "regexp": "^(.*)[(](\\d+)[)]:\\s+(Warning|Error):\\s+(.*)$",
+                  "file": 1,
+                  "line": 2,
+                  "severity": 3,
+                  "message": 4
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "CC65 build active file",
+            "command": "${workspaceFolder}/../cc65/bin/cl65.exe",
+            "args": [
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.prg",
+                "-u",
+                "__EXEHDR__",
+                "-t",
+                "cx16",
+                "-C",
+                "${workspaceFolder}/../cc65/cfg/cx16-asm.cfg",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../cc65/bin"
+            },
+            "problemMatcher": {
+                "owner": "c",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                  "regexp": "^(.*)[(](\\d+)[)]:\\s+(Warning|Error):\\s+(.*)$",
+                  "file": 1,
+                  "line": 2,
+                  "severity": 3,
+                  "message": 4
+                }
+            },
+            "group": "build"
+        }
+    ]
+}

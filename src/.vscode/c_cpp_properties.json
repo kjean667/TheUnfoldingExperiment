@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "CC65",
+            "cStandard": "c89",
+            "includePath": [
+				"${workspaceFolder}/../cc65/include/**"
+            ],
+            "compilerPath": "${workspaceFolder}/../cc65/bin/cl65.exe",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
